@@ -14,7 +14,7 @@ public class PlayerSm extends CharacterSm {
 	
 	public void Move(char keyCode, char dashCode){
 		dash = 2;
-	
+		System.out.println(playerMovement);
 		switch(playerMovement){
 			case still:
 				stop();
@@ -31,6 +31,7 @@ public class PlayerSm extends CharacterSm {
 				else if(keyCode =='d'){
 					playerMovement = move.down;
 				}
+				break;
 				
 			case left:
 				moveLeft();
@@ -39,6 +40,10 @@ public class PlayerSm extends CharacterSm {
 					dashFrames =20;
 					playerMovement = move.dash;
 				}
+				else if (keyCode =='i'){
+					playerMovement = move.still;
+				}
+				break;
 				
 			case right:
 				moveRight();
@@ -50,6 +55,7 @@ public class PlayerSm extends CharacterSm {
 				else if (keyCode =='i'){
 					playerMovement = move.still;
 				}
+				break;
 			case down:
 				moveDown();
 				direction = 3;
@@ -60,6 +66,7 @@ public class PlayerSm extends CharacterSm {
 				else if (keyCode =='i'){
 					playerMovement = move.still;
 				}
+				break;
 			case up:
 				moveUp();
 				direction = 1;
@@ -70,41 +77,44 @@ public class PlayerSm extends CharacterSm {
 				else if (keyCode =='i'){
 					playerMovement = move.still;
 				}
+				break;
 			case dash:
 				dash--;
-				speedPointsY = speedPointsY*dash;
-				speedPointsX = speedPointsX*dash;
 				if(dash<=0){
 					speedPointsY = speedPointsY/dash;
 					speedPointsX = speedPointsX/dash;
 					switch(direction){
 					case 1:
-						
 							playerMovement = move.up;
-						
+							break;
 					
 					case 2: 
 						
 							playerMovement = move.right;
-						
+							break;
 					case 3: 
 						
 							playerMovement = move.down;
-						
+							break;
 					case 4:
 						
 							playerMovement = move.left;
-						
-				default: 
-					playerMovement = move.still;
-					
+							break;
+					default: 
+						playerMovement = move.still;
+						break;
 					}
 				}
+				else{
+					speedPointsY = speedPointsY*dash;
+					speedPointsX = speedPointsX*dash;
+				}
+				break;
 			default:
-				playerMovement = move.still;
-				
-				
+				playerMovement = move.still;	
+				break;
 		}
+		super.move();
 	}
 
 }

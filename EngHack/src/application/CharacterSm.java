@@ -32,11 +32,11 @@ public class CharacterSm {
 		speedPointsY = 0;
 	}
 	public void moveDown(){
-		speedPointsY = -baseSpeed;
+		speedPointsY = baseSpeed;
 		speedPointsX = 0;
 	}
 	public void moveUp(){
-		speedPointsY = baseSpeed;
+		speedPointsY = -baseSpeed;
 		speedPointsX = 0;
 	}
 	public void stop(){
