@@ -56,7 +56,6 @@ public class Game extends Application {
 	
 	class KeyEventHandler implements EventHandler<KeyEvent>{
 		public void handle(KeyEvent e){
-			System.out.println("asdfhmgfdsf");
 			switch (e.getCode()){	// with pressed actions, getCode() returns enumerated type. getr1() returns the String version
 				case DOWN: player.moveDown();  break;
 				case UP: player.moveUp(); break;

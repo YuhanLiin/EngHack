@@ -33,15 +33,27 @@ public class EnemySm extends CharacterSm {
 				break;
 			case movingRight:
 				moveRight();
+				if (object.x >= maxX) {
+					myEnemyFSMState = enemyState.movingLeft;
+				}
 				break;
 			case movingLeft:
 				moveLeft();
+				if (object.x <= minX) {
+					myEnemyFSMState = enemyState.movingRight;
+				}
 				break;
 			case movingDown:
 				moveDown();
+				if (object.y >= maxY) {
+					myEnemyFSMState = enemyState.movingUp;
+				}
 				break;
 			case movingUp:
 				moveUp();
+				if (object.y <= minY) {
+					myEnemyFSMState = enemyState.movingDown;
+				}
 				break;
 			case DEAD:
 				getKilled();
@@ -54,42 +66,6 @@ public class EnemySm extends CharacterSm {
 	int maxY;
 	int minY;
 	boolean gotHit;
-	
-	public void moveRight() {
-		if (object.x < maxX) {
-			speedPointsX = baseSpeed;
-		}
-		else {
-			myEnemyFSMState = enemyState.movingLeft;
-		}
-	}
-	
-	public void moveLeft() {
-		if (object.x > minX) {
-			speedPointsX = -baseSpeed;
-		}
-		else {
-			myEnemyFSMState = enemyState.movingRight;
-		}
-	}
-	
-	public void moveUp() {
-		if (object.y < maxY) {
-			speedPointsY = baseSpeed;
-		}
-		else {
-			myEnemyFSMState = enemyState.movingDown;
-		}
-	}
-	
-	public void moveDown() {
-		if (object.y > minY) {
-			speedPointsY = -baseSpeed;
-		}
-		else {
-			myEnemyFSMState = enemyState.movingUp;
-		}
-	}
 	
 	public void getKilled() {
 		
