@@ -19,7 +19,7 @@ public class EnemySm extends CharacterSm {
 	int minY;
 	boolean gotHit;
 	
-	public void EnemySm() {
+	public void EnemySm(Game environment) {
 	
 		switch(myEnemyFSMState) {
 			case SPAWNED:
@@ -58,17 +58,41 @@ public class EnemySm extends CharacterSm {
 	
 	
 	public void moveRight() {
-		positionX++;
+		if (positionX < maxX) {
+			positionX++;
+		}
+		else {
+			myEnemyFSMState = enemyState.movingLeft;
+		}
 	}
+	
 	public void moveLeft() {
-		positionX--;
+		if (positionX > minX) {
+			positionX--;
+		}
+		else {
+			myEnemyFSMState = enemyState.movingRight;
+		}
 	}
+	
 	public void moveUp() {
-		positionY++;
+		if (positionY < maxY) {
+			positionY++;
+		}
+		else {
+			myEnemyFSMState = enemyState.movingDown;
+		}
 	}
+	
 	public void moveDown() {
-		positionY--;
+		if (positionY > minY) {
+			positionY--;
+		}
+		else {
+			myEnemyFSMState = enemyState.movingUp;
+		}
 	}
+	
 	public void getKilled() {
 		
 	}
