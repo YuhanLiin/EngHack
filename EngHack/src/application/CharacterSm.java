@@ -51,7 +51,7 @@ public class CharacterSm {
 		speedPointsY = 0;
 		healthPoints = maxHealth;
 		enviroment = enviro;
-		view = new views.View(new Image("Images/Player.png"));
+		view = new views.View(new Image("Images/Player.jpg"));
 		view.setX(x);
 		view.setY(y);
 		view.setFitHeight(h);
