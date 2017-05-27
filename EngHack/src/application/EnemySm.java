@@ -6,21 +6,14 @@ public class EnemySm extends CharacterSm {
 	
 	enum enemyState {SPAWNED, movingLeft, movingRight, movingDown, movingUp, DEAD};
 	enum initialPos {bottomRight, bottomLeft, topRight, topLeft}
-
 	
 	enemyState myEnemyFSMState = enemyState.SPAWNED;
 	initialPos myEnemyInitialPos = initialPos.bottomRight;
-	
-	int positionX;
-	int positionY;
-	int maxX;
-	int minX;
-	int maxY;
-	int minY;
-	boolean gotHit;
-	
-	public void EnemySm(Game environment) {
-	
+
+	public EnemySm(Game enviro, int x, int y, int h, int w) {
+		super(enviro, x, y, h, w);
+		// TODO Auto-generated constructor stub
+		
 		switch(myEnemyFSMState) {
 			case SPAWNED:
 				switch(myEnemyInitialPos) {
@@ -56,10 +49,15 @@ public class EnemySm extends CharacterSm {
 		}
 	}
 	
+	int maxX;
+	int minX;
+	int maxY;
+	int minY;
+	boolean gotHit;
 	
 	public void moveRight() {
-		if (positionX < maxX) {
-			positionX++;
+		if (object.x < maxX) {
+			speedPointsX = baseSpeed;
 		}
 		else {
 			myEnemyFSMState = enemyState.movingLeft;
@@ -67,8 +65,8 @@ public class EnemySm extends CharacterSm {
 	}
 	
 	public void moveLeft() {
-		if (positionX > minX) {
-			positionX--;
+		if (object.x > minX) {
+			speedPointsX = -baseSpeed;
 		}
 		else {
 			myEnemyFSMState = enemyState.movingRight;
@@ -76,8 +74,8 @@ public class EnemySm extends CharacterSm {
 	}
 	
 	public void moveUp() {
-		if (positionY < maxY) {
-			positionY++;
+		if (object.y < maxY) {
+			speedPointsY = baseSpeed;
 		}
 		else {
 			myEnemyFSMState = enemyState.movingDown;
@@ -85,8 +83,8 @@ public class EnemySm extends CharacterSm {
 	}
 	
 	public void moveDown() {
-		if (positionY > minY) {
-			positionY--;
+		if (object.y > minY) {
+			speedPointsY = -baseSpeed;
 		}
 		else {
 			myEnemyFSMState = enemyState.movingUp;
