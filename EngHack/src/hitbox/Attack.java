@@ -1,5 +1,7 @@
 package hitbox;
 
+import application.CharacterSm;
+
 public abstract class Attack {
 	public boolean isDone = false;
 	public int hitId;
