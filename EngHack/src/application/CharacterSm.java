@@ -4,11 +4,10 @@ import game.Game;
 
 
 public class CharacterSm {
-	enum Movement{Still, LeftRight, UpDown, Dash};
 	enum Attack{Passive, Attack};
+	enum Direction{Right, Left};
 	public Hitbox object;
 	Game enviroment;
-	Movement move;
 	Attack attack;
 	int healthPoints;
 	int attackPoints;
@@ -26,17 +25,20 @@ public class CharacterSm {
 		healthPoints = 0;
 		enviroment = enviro;
 	}
+	public CharacterSm(){
+		
+	}
 	public void move(){
-		if(object.x+speedPointsX >=enviroment.width){
+		if(object.x+speedPointsX +(object.width)/2 >=enviroment.width){
 			object.x = enviroment.width-(object.width/2);
 		}
-		else if(object.x+speedPointsX<=0){
+		else if(object.x+speedPointsX +(object.width)/2<=0){
 			object.x=(object.width)/2;
 		}
-		if(object.y+speedPointsY >=enviroment.height){
+		if(object.y+speedPointsY + (object.height)/2>=enviroment.height){
 			object.y = enviroment.width-(object.height/2);
 		}
-		else if(object.y+speedPointsY<=0){
+		else if(object.y+speedPointsY +(object.height)/2<=0){
 			object.y=(object.height)/2;
 		}
 		else{
@@ -44,11 +46,16 @@ public class CharacterSm {
 			object.y = object.y +speedPointsY;
 		}
 	}
-	public void attack(){
-		
+	public void attack(EnemySm enemy){
+		enemy.healthPoints = healthPoints - attackPoints;
 	}
 	public void dash(int multiplier){
-		
+		speedPointsX = speedPointsX*multiplier;
+		speedPointsY = speedPointsY*multiplier;
+	}
+	public void unDash(int multiplier){
+		speedPointsX = speedPointsX/multiplier;
+		speedPointsY = speedPointsY/multiplier;
 	}
 
 }
