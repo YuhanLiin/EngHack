@@ -43,7 +43,7 @@ public class Game extends Application {
 		primaryStage.show();
 		pane.requestFocus();
 		
-		timeline = new Timeline(new KeyFrame(Duration.millis(1000/60), new FrameHandler()));
+		timeline = new Timeline(new KeyFrame(Duration.millis(1000/60), new FrameHandler(this)));
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();
 		
@@ -57,8 +57,8 @@ public class Game extends Application {
 	class KeyEventHandler implements EventHandler<KeyEvent>{
 		public void handle(KeyEvent e){
 			switch (e.getCode()){	// with pressed actions, getCode() returns enumerated type. getr1() returns the String version
-				case DOWN: player.moveDown();  break;
-				case UP: player.moveUp(); break;
+				case DOWN: player.moveUp();  break;
+				case UP: player.moveDown(); break;
 				case LEFT: player.moveLeft(); break;
 				case RIGHT: player.moveRight(); break;
 				// The default statement throws exceptions if SHIFT or COMMAND are pressed. Leaving it out, no exceptions are thrown, but the character displayed cannot be changed
@@ -70,14 +70,19 @@ public class Game extends Application {
 	}
 	
 	class FrameHandler implements EventHandler<ActionEvent>{
+		Game game;
+		public FrameHandler(Game game){
+			this.game = game;
+		}
+		
 		public void handle(ActionEvent e){
 			frameCount++;
 			player.move();
-//			if (frameCount % (60*5) == 0){
-//				EnemySm enemy = new EnemySm();
-//				pane.getChildren().add(enemy.view);
-//				enemies.add(enemy);
-//			}
+			if (frameCount % (60*5) == 0){
+				EnemySm enemy = new EnemySm(this.game, 40, 40, 40, 40);
+				pane.getChildren().add(enemy.view);
+				enemies.add(enemy);
+			}
 //			for (EnemySm enemy: enemies){
 //				if (/*enemy is ded*/){
 //					enemies.remove(enemy);
