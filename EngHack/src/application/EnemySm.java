@@ -6,21 +6,14 @@ public class EnemySm extends CharacterSm {
 	
 	enum enemyState {SPAWNED, movingLeft, movingRight, movingDown, movingUp, DEAD};
 	enum initialPos {bottomRight, bottomLeft, topRight, topLeft}
-
 	
 	enemyState myEnemyFSMState = enemyState.SPAWNED;
 	initialPos myEnemyInitialPos = initialPos.bottomRight;
-	
-	int positionX;
-	int positionY;
-	int maxX;
-	int minX;
-	int maxY;
-	int minY;
-	boolean gotHit;
-	
-	public void EnemySm(Game environment) {
-	
+
+	public EnemySm(Game enviro) {
+		super(enviro);
+		// TODO Auto-generated constructor stub
+		
 		switch(myEnemyFSMState) {
 			case SPAWNED:
 				switch(myEnemyInitialPos) {
@@ -56,6 +49,13 @@ public class EnemySm extends CharacterSm {
 		}
 	}
 	
+	int positionX;
+	int positionY;
+	int maxX;
+	int minX;
+	int maxY;
+	int minY;
+	boolean gotHit;
 	
 	public void moveRight() {
 		if (positionX < maxX) {
