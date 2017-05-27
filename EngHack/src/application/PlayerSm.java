@@ -6,14 +6,13 @@ public class PlayerSm extends CharacterSm {
 	enum move{left,right, up,down, still, dash};
 	move playerMovement = move.still;
 	int dashFrames;
-	int dash;
+	int dash = 2;
 
 	public PlayerSm(Game enviro, int x, int y, int h, int w) {
 		super(enviro, x, y, h, w);
 	}
 	
 	public void Move(char keyCode, char dashCode){
-		dash = 2;
 		System.out.println(playerMovement);
 		switch(playerMovement){
 			case still:
@@ -79,8 +78,9 @@ public class PlayerSm extends CharacterSm {
 				}
 				break;
 			case dash:
-				dash--;
-				if(dash<=0){
+				dashFrames--;
+				System.out.println(dashFrames);
+				if(dashFrames<=0){
 					speedPointsY = speedPointsY/dash;
 					speedPointsX = speedPointsX/dash;
 					switch(direction){
