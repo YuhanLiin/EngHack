@@ -3,8 +3,8 @@ package hitbox;
 public class Hitbox {
 	public int x;
 	public int y;
-	int height;
-	int width;
+	public int height;
+	public int width;
 	
 	public Hitbox(int px, int py, int h, int w){
 		x = px;
